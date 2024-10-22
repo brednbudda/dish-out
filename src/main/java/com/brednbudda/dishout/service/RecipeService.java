@@ -9,35 +9,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class RecipeService {
+public interface RecipeService {
 
-    @Autowired
-    private RecipeRepository recipeRepository;
+    List<Recipe> findAllRecipes();
 
-    public List<Recipe> findAllRecipes() {
-        return recipeRepository.findAll();
-    }
+    Optional<Recipe> findById(ObjectId id);
 
-    public Optional<Recipe> findById(ObjectId id) {
-        return recipeRepository.findById(id);
-    }
+    Recipe createRecipe(Recipe recipeBody);
 
-    public List<Recipe> findByTags(String tag) {
-        return recipeRepository.findByTags(tag);
-    }
+    void deleteById(ObjectId id);
 
-    public List<Recipe> findByTitleContaining(String title) {
-        return recipeRepository.findByTitleContaining(title);
-    }
+    Recipe save(Recipe recipe);
 
-    public Recipe createRecipe(Recipe recipeBody) {
-        return recipeRepository.save(new Recipe(recipeBody));
-    }
+    //List<Recipe> findByTags(String tag);
 
-    public void deleteById(ObjectId id) {
-        recipeRepository.deleteById(id);
-    }
-
+    //List<Recipe> findByTitleContaining(String title);
 
 }
