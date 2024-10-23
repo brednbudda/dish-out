@@ -59,6 +59,18 @@ const RecipeEditCreate = () => {
 	setRecipe({ ...recipe, ingredients: [ 
 		...recipe.ingredients.concat(blankIngredient)]});
   };
+
+  const handleAddDirection = () => {
+	const blankDirection = '';
+	setRecipe({ ...recipe, directions: [ 
+		...recipe.directions.concat(blankDirection)]});
+  };
+
+  const handleAddTag = () => {
+	const blankTag = '';
+	setRecipe({ ...recipe, tags: [ 
+		...recipe.tags.concat(blankTags)]});
+  };
 	
 
   const handleSubmit = (event) => {
@@ -139,6 +151,7 @@ const RecipeEditCreate = () => {
               placeholder={`Step ${index + 1}`}
             />
           ))}
+          <button type="button" onClick={handleAddDirection}>Add Step</button>
         </div>
 
         <div>
@@ -150,7 +163,8 @@ const RecipeEditCreate = () => {
               onChange={(event) => handleTagChange(index, event)}
               placeholder={`Tag ${index + 1}`}
             />
-          ))}
+          ))} 
+          <button type="button" onClick={handleAddTag }>Add Tag</button>
         </div>
 
         <button type="submit">{id ? 'Update Recipe' : 'Create Recipe'}</button>
