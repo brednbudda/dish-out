@@ -48,10 +48,10 @@ const RecipeEditCreate = () => {
   };
   
   const handleTagChange = (index, event) => {
-	const newTags = recipe.tags.map((tag, i) => (
+	const newTag = recipe.tags.map((tag, i) => (
 	  i === index ? event.target.value : tag
 	));
-	setRecipe({ ...recipe, tags: newTags });
+	setRecipe({ ...recipe, tags: newTag });
   };
 
   const handleAddIngredient = () => {
@@ -59,19 +59,36 @@ const RecipeEditCreate = () => {
 	setRecipe({ ...recipe, ingredients: [ 
 		...recipe.ingredients.concat(blankIngredient)]});
   };
+  const handleDeleteIngredient = (index) => {
+	setRecipe(prevRecipe => ({
+		...prevRecipe,
+		ingredients: prevRecipe.ingredients.filter((_, i) => i !== index)
+	}));
+  };
 
   const handleAddDirection = () => {
-	const blankDirection = '';
 	setRecipe({ ...recipe, directions: [ 
-		...recipe.directions.concat(blankDirection)]});
+		...recipe.directions, '']});
+  };
+
+  const handleDeleteDirection = (index) => {
+	setRecipe(prevRecipe => ({
+		...prevRecipe,
+		directions: prevRecipe.directions.filter((_, i) => i !== index)
+	}));
   };
 
   const handleAddTag = () => {
-	const blankTag = '';
 	setRecipe({ ...recipe, tags: [ 
-		...recipe.tags.concat(blankTags)]});
+		...recipe.tags, '']});
   };
 	
+  const handleDeleteTag = (index) => {
+	setRecipe(prevRecipe => ({
+		...prevRecipe,
+		tags: prevRecipe.tags.filter((_, i) => i !== index)
+	}));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -136,6 +153,9 @@ const RecipeEditCreate = () => {
                 placeholder="Unit"
                 onChange={(event) => handleIngredientChange(index, event)}
               />
+			  <button
+			    type="button"
+			    onClick={() => handleDeleteIngredient(index)}>Delete</button>
             </div>
           ))}
           <button type="button" onClick={handleAddIngredient}>Add Ingredient</button>
@@ -144,12 +164,16 @@ const RecipeEditCreate = () => {
         <div>
           <label>Directions</label>
           {recipe.directions.map((direction, index) => (
-            <textarea
-              key={index}
-              value={direction}
-              onChange={(event) => handleDirectionChange(index, event)}
-              placeholder={`Step ${index + 1}`}
-            />
+			  <div key={index}>
+				<textarea
+				  value={direction}
+				  onChange={(event) => handleDirectionChange(index, event)}
+				  placeholder={`Step ${index + 1}`}
+				/>
+			  	<button
+			  	  type="button"
+			  	  onClick={() => handleDeleteDirection(index)}>Delete</button>
+			  </div>
           ))}
           <button type="button" onClick={handleAddDirection}>Add Step</button>
         </div>
@@ -157,14 +181,20 @@ const RecipeEditCreate = () => {
         <div>
           <label>Tags</label>
           {recipe.tags.map((tag, index) => (
-            <textarea
-              key={index}
-              value={tag}
-              onChange={(event) => handleTagChange(index, event)}
-              placeholder={`Tag ${index + 1}`}
-            />
+			  <div key={index}>
+				<input 
+				  type="text"
+				  name="tag"
+				  value={tag}
+				  onChange={(event) => handleTagChange(index, event)}
+				  placeholder={`Tag ${index + 1}`}
+				/>
+          	  <button 
+			    type="button" 
+			    onClick={() => handleDeleteTag(index)}>Delete</button>
+			  </div>
           ))} 
-          <button type="button" onClick={handleAddTag }>Add Tag</button>
+          <button type="button" onClick={handleAddTag}>Add Tag</button>
         </div>
 
         <button type="submit">{id ? 'Update Recipe' : 'Create Recipe'}</button>
