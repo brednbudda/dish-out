@@ -38,6 +38,12 @@ const RecipeDetails = () => {
   };
 
   const handleRecipeDelete = (id) => {
+	try {
+	  axios.delete(`/recipes/${id}`);
+	  navigate('/recipes');
+	} catch (error) {
+	  console.error(error);
+	}
   };
   
   return (
