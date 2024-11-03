@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import '../css/styles.css';
 
 const RecipeList = () => {
   const [recipes, setRecipes] = useState([]);
@@ -24,15 +25,15 @@ const RecipeList = () => {
   };
 
   return (
-    <div>
+    <div class="recipe-list-main">
       <h1>Recipes</h1>
-	  	<Button color="success" tag={Link} to="/create-recipe">Add New Recipe</Button>
+	  <Link to={'/create-recipe'}><button class="button-add-new">Add New Recipe</button></Link>
       <ul>
         {recipes.map((recipe) => (
           <li key={recipe.id.toString()}>
             <h2>{recipe.title}</h2>
             <p>Tags: {recipe.tags.join(', ')}</p>
-			<button onClick={() => handleViewDetails(recipe.id)}>View Details</button>
+			<button class="button-add" onClick={() => handleViewDetails(recipe.id)}>View Details</button>
           </li>
         ))}
       </ul>

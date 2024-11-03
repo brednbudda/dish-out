@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+import '../css/styles.css';
 import axios from 'axios';
 
 const RecipeEditCreate = () => {
@@ -112,10 +113,11 @@ const RecipeEditCreate = () => {
   };
 
   return (
-    <div>
+    <div class="recipe-edit-create-main">
+	  <Link to={'/recipes'}><button class="button-home">Home Page</button></Link>
       <h1>{id ? 'Edit Recipe' : 'Create Recipe'}</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div id="recipe-edit-create-title">
           <label>Title</label>
           <input
             type="text"
@@ -126,10 +128,11 @@ const RecipeEditCreate = () => {
           />
         </div>
 
-        <div>
+        <div id="recipe-edit-create-ingredients">
           <label>Ingredients</label>
           {recipe.ingredients.map((ingredient, index) => (
             <div key={index}>
+			  <div id="ingredient-name">
               <input
                 type="text"
                 name="name"
@@ -138,6 +141,8 @@ const RecipeEditCreate = () => {
                 onChange={(event) => handleIngredientChange(index, event)}
                 required
               />
+			  </div>
+			  <div id="ingredient-quantity">
               <input
                 type="number"
                 name="quantity"
@@ -146,6 +151,8 @@ const RecipeEditCreate = () => {
                 onChange={(event) => handleIngredientChange(index, event)}
                 required
               />
+			  </div>
+			  <div id="ingredient-unit">
               <input
                 type="text"
                 name="unit"
@@ -153,15 +160,17 @@ const RecipeEditCreate = () => {
                 placeholder="Unit"
                 onChange={(event) => handleIngredientChange(index, event)}
               />
+			  </div>
 			  <button
 			    type="button"
+			  	class="button-delete"
 			    onClick={() => handleDeleteIngredient(index)}>Delete</button>
             </div>
           ))}
-          <button type="button" onClick={handleAddIngredient}>Add Ingredient</button>
+          <button type="button" class="button-add" onClick={handleAddIngredient}>Add Ingredient</button>
         </div>
 
-        <div>
+        <div class="recipe-create-delete-directions">
           <label>Directions</label>
           {recipe.directions.map((direction, index) => (
 			  <div key={index}>
@@ -172,13 +181,14 @@ const RecipeEditCreate = () => {
 				/>
 			  	<button
 			  	  type="button"
+			  	  class="button-delete"
 			  	  onClick={() => handleDeleteDirection(index)}>Delete</button>
 			  </div>
           ))}
-          <button type="button" onClick={handleAddDirection}>Add Step</button>
+          <button type="button" class="button-add" onClick={handleAddDirection}>Add Step</button>
         </div>
 
-        <div>
+        <div class="recipe-create-delete-tags">
           <label>Tags</label>
           {recipe.tags.map((tag, index) => (
 			  <div key={index}>
@@ -191,10 +201,11 @@ const RecipeEditCreate = () => {
 				/>
           	  <button 
 			    type="button" 
+			    class="button-delete"
 			    onClick={() => handleDeleteTag(index)}>Delete</button>
 			  </div>
           ))} 
-          <button type="button" onClick={handleAddTag}>Add Tag</button>
+          <button type="button" class="button-add" onClick={handleAddTag}>Add Tag</button>
         </div>
 
         <button type="submit">{id ? 'Update Recipe' : 'Create Recipe'}</button>

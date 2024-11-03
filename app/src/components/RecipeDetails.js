@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import '../css/styles.css';
 import axios from 'axios';
 
 const RecipeDetails = () => {
@@ -38,17 +39,21 @@ const RecipeDetails = () => {
   };
 
   const handleRecipeDelete = (id) => {
-	try {
-	  axios.delete(`/recipes/${id}`);
-	  navigate('/recipes');
-	} catch (error) {
-	  console.error(error);
+	const confirmDelete = window.confirm("Are you sure you want to delete?")
+	
+	if (confirmDelete) {
+		try {
+		  axios.delete(`/recipes/${id}`);
+		  navigate('/recipes');
+		} catch (error) {
+		  console.error(error);
+		}
 	}
   };
   
   return (
-    <div>
-	  <Link to={'/recipes'}><button>Home Page</button></Link>
+    <div class="recipe-details-card">
+	  <Link to={'/recipes'}><button class="button-home">Home Page</button></Link>
       <h1>{recipe.title}</h1>
       <h2>Ingredients</h2>
       <ul>
