@@ -7,6 +7,7 @@ import '../css/styles.css';
 
 const RecipeList = () => {
   const [recipes, setRecipes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,16 +25,32 @@ const RecipeList = () => {
 	  navigate(`/recipes/${id}`);
   };
 
+  const filteredRecipes = recipes.filter(recipe =>
+	recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+	recipe.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
   return (
-    <div class="recipe-list-main">
+    <div className="recipe-list-main">
       <h1>Recipes</h1>
-	  <Link to={'/create-recipe'}><button class="button-add-new">Add New Recipe</button></Link>
+	    <div className="search-and-add">
+	  	  <input
+	  		type="text"
+	  		placeholder="Search recipes..."
+	  		value={searchTerm}
+	  		onChange={(e) => setSearchTerm(e.target.value)}
+	  		className="search-input"
+	      />
+		  <Link to={'/create-recipe'}>
+	  		<button className="button-add-new">Add New Recipe</button>
+	  	  </Link>
+	  </div>
       <ul>
-        {recipes.map((recipe) => (
+        {filteredRecipes.map((recipe) => (
           <li key={recipe.id.toString()}>
             <h2>{recipe.title}</h2>
             <p>Tags: {recipe.tags.join(', ')}</p>
-			<button class="button-add" onClick={() => handleViewDetails(recipe.id)}>View Details</button>
+			<button className="button-add" onClick={() => handleViewDetails(recipe.id)}>View Details</button>
           </li>
         ))}
       </ul>
