@@ -52,14 +52,14 @@ const RecipeDetails = () => {
   };
   
   return (
-    <div class="recipe-details-card">
-	  <Link to={'/recipes'}><button class="button-home">Home Page</button></Link>
+    <div className="recipe-details-card">
+	  <Link to={'/recipes'}><button className="button-home">Home Page</button></Link>
       <h1>{recipe.title}</h1>
       <h2>Ingredients</h2>
       <ul>
         {recipe.ingredients.map((ingredient, index) => (
           <li key={index}>
-            {ingredient.quantity} {ingredient.unit} of {ingredient.name}
+            {ingredient.quantity} {ingredient.unit} - {ingredient.name}
           </li>
         ))}
       </ul>
