@@ -34,8 +34,8 @@ body {
 .recipe-edit-create-ingredients,
 .recipe-edit-create-directions,
 .recipe-edit-create-tags {
-  margin-bottom: 1.5rem;
-  padding: 1rem;
+  margin-bottom: 10px;
+  padding: 5rem;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background-color: var(--bg-primary);
@@ -52,6 +52,13 @@ body {
 #ingredient-unit {
 	width: 25%;
 	display: inline-block;
+	margin-top: 0.5rem;
+}
+
+.label {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 /* Button Styles */
@@ -82,6 +89,8 @@ body {
   background-color: var(--accent-light);
   color: white;
   margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .button-add:hover,
@@ -104,11 +113,17 @@ body {
   background-color: #ff4757;
 }
 
+/* Search field */
+.search-input {
+  max-width: 50%;
+}
+
 /* Input and Text Area Styles */
 input,
 textarea {
   width: 80%;
-  padding: 0.5rem;
+  padding: 1rem;
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   border: 1px solid var(--border-color);
   border-radius: 4px;
@@ -120,6 +135,10 @@ textarea:focus {
   outline: none;
   border-color: var(--accent-light);
   box-shadow: 0 0 0 2px rgba(111, 179, 147, 0.2);
+}
+
+title {
+  padding: 1rem;
 }
 
 /* Responsive Design */

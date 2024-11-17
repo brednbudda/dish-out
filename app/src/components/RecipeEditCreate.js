@@ -113,12 +113,12 @@ const RecipeEditCreate = () => {
   };
 
   return (
-    <div class="recipe-edit-create-main">
-	  <Link to={'/recipes'}><button class="button-home">Home Page</button></Link>
+    <div className="recipe-edit-create-main">
+	  <Link to={'/recipes'}><button className="button-home">Home Page</button></Link>
       <h1>{id ? 'Edit Recipe' : 'Create Recipe'}</h1>
       <form onSubmit={handleSubmit}>
         <div id="recipe-edit-create-title">
-          <label>Title</label>
+          <label className="label">Title</label>
           <input
             type="text"
             name="title"
@@ -129,7 +129,7 @@ const RecipeEditCreate = () => {
         </div>
 
         <div id="recipe-edit-create-ingredients">
-          <label>Ingredients</label>
+          <label className="label">Ingredients</label>
           {recipe.ingredients.map((ingredient, index) => (
             <div key={index}>
 			  <div id="ingredient-name">
@@ -163,15 +163,15 @@ const RecipeEditCreate = () => {
 			  </div>
 			  <button
 			    type="button"
-			  	class="button-delete"
+			  	className="button-delete"
 			    onClick={() => handleDeleteIngredient(index)}>Delete</button>
             </div>
           ))}
-          <button type="button" class="button-add" onClick={handleAddIngredient}>Add Ingredient</button>
+          <button type="button" className="button-add" onClick={handleAddIngredient}>Add Ingredient</button>
         </div>
 
-        <div class="recipe-create-delete-directions">
-          <label>Directions</label>
+        <div className="recipe-create-delete-directions">
+          <label className="label">Directions</label>
           {recipe.directions.map((direction, index) => (
 			  <div key={index}>
 				<textarea
@@ -181,15 +181,15 @@ const RecipeEditCreate = () => {
 				/>
 			  	<button
 			  	  type="button"
-			  	  class="button-delete"
+			  	  className="button-delete"
 			  	  onClick={() => handleDeleteDirection(index)}>Delete</button>
 			  </div>
           ))}
-          <button type="button" class="button-add" onClick={handleAddDirection}>Add Step</button>
+          <button type="button" className="button-add" onClick={handleAddDirection}>Add Step</button>
         </div>
 
-        <div class="recipe-create-delete-tags">
-          <label>Tags</label>
+        <div className="recipe-create-delete-tags">
+          <label className="label">Tags</label>
           {recipe.tags.map((tag, index) => (
 			  <div key={index}>
 				<input 
@@ -201,11 +201,11 @@ const RecipeEditCreate = () => {
 				/>
           	  <button 
 			    type="button" 
-			    class="button-delete"
+			    className="button-delete"
 			    onClick={() => handleDeleteTag(index)}>Delete</button>
 			  </div>
           ))} 
-          <button type="button" class="button-add" onClick={handleAddTag}>Add Tag</button>
+          <button type="button" className="button-add" onClick={handleAddTag}>Add Tag</button>
         </div>
 
         <button type="submit">{id ? 'Update Recipe' : 'Create Recipe'}</button>
